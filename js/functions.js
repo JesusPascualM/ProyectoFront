@@ -165,22 +165,29 @@ window.addEventListener('load', () => {
   };
 
   const activarBoton = (pregunta, respuesta, correcta, id) => {
-    document.querySelectorAll('.opcionRespuestas').forEach((element) => {
+    let botonesOpciones = document.querySelectorAll('.opcionRespuestas');
+
+    botonesOpciones.forEach((element) => {
       element.addEventListener('click', () => {
         if (correcta[id] === element.value) {
           element.style.boxShadow = '0px 0px 10px 0px green';
-          document.querySelectorAll('.opcionRespuestas').forEach((boton) => (boton.disabled = true));
+          botonesOpciones.forEach((boton) => (boton.disabled = true));
           setTimeout(() => {
             validarRespuesta(correcta[id], element.value, id);
             mostrarTodoPorPantalla(pregunta, respuesta, correcta, id);
-          }, 500);
+          }, 1000);
         } else {
           element.style.boxShadow = '0px 0px 10px 0px red';
-          document.querySelectorAll('.opcionRespuestas').forEach((boton) => (boton.disabled = true));
+          botonesOpciones.forEach((boton) => {
+            if (boton.value === correcta[id]) {
+              boton.style.boxShadow = '0px 0px 10px 0px green';
+            }
+          });
+          botonesOpciones.forEach((boton) => (boton.disabled = true));
           setTimeout(() => {
             validarRespuesta(correcta[id], element.value, id);
             mostrarTodoPorPantalla(pregunta, respuesta, correcta, id);
-          }, 500);
+          }, 1000);
         }
       });
     });
