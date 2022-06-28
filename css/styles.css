@@ -4,7 +4,13 @@
 }
 #wrapper {
   background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: sans-serif;
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
 #titulo {
   background-color: #ff3cac;
@@ -79,15 +85,21 @@
 #contenedorArticulosCategorias article {
   border-radius: 15px;
   box-shadow: 0px 0px 10px rgb(203, 203, 203);
-  max-width: 300px;
+  max-width: 250px;
   min-width: 150px;
   width: 100%;
 }
 
 #contenedorArticulosCategorias article button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   width: 100%;
+
   padding: 10px;
-  min-height: 400px;
+  min-height: 300px;
   font-size: 2.5rem;
   border: none;
   cursor: pointer;
@@ -111,9 +123,13 @@
 #botonCategoriaAleatoria {
   background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
 }
+#botonCategoriaFirebase {
+  background-color: #fbab7e;
+  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+}
 #intermediarioSeleccionCategoria {
   align-items: center;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0px 0px 50px 0px rgb(121, 121, 121);
   display: flex;
@@ -153,7 +169,31 @@
 #intermediarioSeleccionCategoria button:last-child {
   padding: 7px;
 }
-
+#contenedorFalloFetch {
+  background-color: rgb(255, 0, 0);
+  padding: 30px;
+  margin-top: 50px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  color: white;
+  max-width: 450px;
+  text-align: center;
+}
+#contenedorFalloFetch button {
+  box-shadow: 0px 0px 5px 0px white;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+  border: none;
+}
+#contenedorFalloFetch button:hover {
+  box-shadow: 0px 0px 10px 5px black;
+  cursor: pointer;
+}
 #contadorPreguntas {
   background-color: white;
   border-radius: 20px;
@@ -167,6 +207,22 @@
   padding-top: 15px;
   padding: 20px;
   width: 90%;
+}
+#anularPrueba {
+  padding: 10px;
+  border: none;
+  width: 50%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 5px gray;
+  border-radius: 10px;
+  background-color: white;
+}
+#anularPrueba:hover {
+  box-shadow: 0px 0px 5px black;
+  cursor: pointer;
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
 #contadorPreguntas p {
   align-items: center;
@@ -262,59 +318,95 @@
 
 #contenedorSesionesAnteriores {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
   background-color: rgb(249, 249, 249);
   align-items: center;
-  max-width: 700px;
   width: 90%;
   font-size: 1.3rem;
   margin: 40px 40px;
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0px 0px 5px rgb(190, 54, 54);
+  box-shadow: 0px 0px 5px rgb(0, 0, 0);
+  justify-content: space-around;
+  padding: 20px 0px 20px;
 }
 
-#contenedorSesionesAnteriores h2 {
-  color: #0093e9;
-  font-weight: 400;
-  padding-bottom: 10px;
+#contenedorTitulo {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  padding: 10px;
+  text-align: center;
+  justify-content: space-between;
+}
+#contenedorTitulo h2 {
+  font-weight: 100;
+}
+
+#contenedorSesiones {
+  align-items: center;
+  box-shadow: 0px 0px 10px 2px lightgray;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  justify-content: center;
+  justify-content: center;
+  max-width: 600px;
+  padding: 10px;
   width: 90%;
 }
-#contenedorSesionesAnteriores > div {
+
+#titulosCategorias {
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  font-weight: 100;
+  justify-content: space-around;
+  padding: 10px 0px 10px;
+  width: 90%;
+}
+.sesiones {
+  align-items: center;
+  box-shadow: 0px 0px 5px 0px lightgray;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-evenly;
+  padding: 10px 0px 10px;
+  width: 100%;
+  width: 90%;
+}
+.sesiones div {
   align-items: center;
   display: flex;
-  width: 90%;
   flex-direction: row;
-  padding: 5px 5px;
-  justify-content: space-around;
-  gap: 50px;
-  text-align: center;
-  margin-bottom: 20px;
+  justify-content: center;
+  width: 100%;
 }
-#contenedorSesionesAnteriores > div > div {
+#contenedorGrafica {
+  box-shadow: 0px 0px 10px 2px lightgray;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 33%;
+  max-width: 600px;
+  padding: 10px;
+  width: 90%;
 }
-
-#contenedorSesionesAnteriores div img {
+#contenedorSesionesAnteriores img {
   width: 25px;
 }
-#titulosCategorias {
-  border-bottom: 1px solid lightgray;
-  font-weight: 100;
-}
+
 #contenedorFecha {
+  display: flex;
+  flex-direction: column;
   font-weight: 100;
 }
 #botonSalirLocalStorage {
-  display: flex;
-  border: none;
   background-color: rgb(249, 249, 249);
+  border: none;
+  display: flex;
   padding: 5px;
 }
 
@@ -327,4 +419,51 @@
   box-shadow: 0px 0px 3px 0px gray;
   border-radius: 100%;
   cursor: pointer;
+}
+
+.iniciarSesionForm{
+  background-color: white;
+  margin-top: 50px;
+  display: flex;
+  align-items:center;
+  flex-direction: column;
+  width: 40%;
+  min-width: 400px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  border-radius:10px;
+}
+.iniciarSesionForm form {
+  display: flex;
+  flex-direction: column;
+  width:80%
+}
+.iniciarSesionForm form label {
+  margin-top: 15px;
+}
+.iniciarSesionForm form input {
+ padding:7px;
+ border:none;
+outline:none;
+ border-bottom:2px solid black;
+}
+
+
+.botonesRegistro{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-top: 50px;
+  gap: 10px;
+  text-align: center;
+  margin-bottom:30px;
+}
+.botonesRegistro button{
+  padding: 5px;
+  width: 100%;
+  border: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px 0px rgb(119, 119, 119);
+  border: 1px solid black;
 }
